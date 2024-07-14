@@ -1,22 +1,21 @@
 {
   "manifest_version": 3,
   "name": "Visua11yze",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Loads CSS to add visual regressions for HTML anti-patterns and accessibility issues. Loads JS to analyze and log details that can't be determined through CSS alone.",
-  "icons": {
-    "48": "icons/visua11yze.png"
+  "homepage_url": "https://github.com/dustinwhisman/visua11yze",
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*/*"
-      ],
-      "js": [
-        "ana11yze.js"
-      ],
-      "css": [
-        "visua11yze.css"
-      ]
-    }
+  "action": {
+    "default_icon": "icons/visua11yze.png",
+    "default_title": "Visua11yze"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
   ]
 }
