@@ -1,6 +1,4 @@
 let scriptsEnabled = false;
-
-const PAGE_ACTION = globalThis.browser ? 'pageAction' : 'action';
 globalThis.browser = globalThis.browser ?? chrome;
 
 async function registerContentScripts() {
@@ -65,6 +63,6 @@ async function toggleContentScripts(tab) {
 	scriptsEnabled = !scriptsEnabled;
 }
 
-browser[PAGE_ACTION].onClicked.addListener(toggleContentScripts);
+browser.action.onClicked.addListener(toggleContentScripts);
 
 registerContentScripts();
