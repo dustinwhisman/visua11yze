@@ -1,0 +1,51 @@
+:root {
+	--warning-outline: 0.25rem solid goldenrod;
+}
+
+input:not(form input) {
+	--warning-rogue-input: 'This input does not belong to a <form>. Users may benefit from <form> semantics and behaviors';
+
+	outline: var(--warning-outline);
+}
+
+select:not(form select) {
+	--warning-rogue-select: 'This select does not belong to a <form>. Users may benefit from <form> semantics and behaviors';
+
+	outline: var(--warning-outline);
+}
+
+textarea:not(form textarea) {
+	--warning-rogue-textarea: 'This textarea does not belong to a <form>. Users may benefit from <form> semantics and behaviors';
+
+	outline: var(--warning-outline);
+}
+
+input[type='checkbox']:not(fieldset input) {
+	--warning-ungrouped-checkbox: 'This checkbox is not grouped in a fieldset. If there are other related checkboxes, they may benefit from being logically grouped together.';
+
+	outline: var(--warning-outline);
+}
+
+figure[aria-label]:not(:has(figcaption)) {
+	--warning-figure-label-not-visible: 'The labeling method used is not visible and only available to assistive software';
+
+	outline: var(--warning-outline);
+}
+
+figure[aria-label] figcaption {
+	--warning-overridden-figcaption: 'The figure has a figcaption that is overridden by an ARIA label';
+
+	outline: var(--warning-outline);
+}
+
+header nav:has(ul > ul) {
+	--warning-nested-navigation: 'You appear to be using tiered/nested navigation in your header. This can be difficult to traverse. Index pages with tables of content are preferable.';
+
+	outline: var(--warning-outline);
+}
+
+video:not(:has(track)) {
+	--video-missing-track: 'It appears this video does not have captions. If the video includes speech, dialog, or audio-only information, then captions are necessary.';
+
+	outline: var(--warning-outline);
+}

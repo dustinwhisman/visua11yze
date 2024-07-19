@@ -1,0 +1,21 @@
+:root {
+	--info-outline: 0.25rem solid aqua;
+}
+
+a[target='_blank'] {
+	--info-target-blank: 'This link will open in a new tab, which users might not expect. Confirm that this is the intended behavior and that users have a way of knowing what will happen.';
+
+	outline: var(--info-outline);
+}
+
+:is(div > div > div > div > *) {
+	--info-divitis: "There's a whole lot of nesting going on here. Is it needed to achieve the layout? (it is not)";
+
+	outline: var(--info-outline);
+}
+
+img[alt=''] {
+	--info-decorative-image: 'This image will be treated as purely decorative. Are you sure it does not convey any useful information or context?';
+
+	outline: var(--info-outline);
+}
