@@ -14,16 +14,16 @@ img:not([alt]) {
 	--error-missing-alt-text: 'This image does not have alt text. Even if it is purely decorative, the alt attribute must exist.';
 
 	background-color: var(--inverted-error-color);
-	outline: var(--inverted-error-outline) !important;
-	outline-offset: 0.25rem !important;
-	filter: invert(100%) !important;
+	outline: var(--inverted-error-outline);
+	outline-offset: 0.25rem;
+	filter: invert(100%);
 }
 
 img[alt=''] {
 	--wcag-success-criteria: '1.1.1 Non-Text Content';
 	--warning-decorative-image: 'This image will be treated as purely decorative. Are you sure it does not convey any useful information or context?';
 
-	filter: opacity(5%) blur(5px) !important;
+	filter: opacity(5%) blur(5px);
 }
 
 img[alt^="image" i],
@@ -32,6 +32,6 @@ img[alt^="graphic" i] {
 	--wcag-success-criteria: '1.1.1 Non-Text Content';
 	--info-repetitive-alt-text: 'Screen readers will let users know they are describing an image, so it is redundant to start alt text with immage, picture, or graphic.';
 
-	outline: var(--info-outline) !important;
-	outline-offset: 0.25rem !important;
+	outline: var(--info-outline);
+	outline-offset: 0.25rem;
 }

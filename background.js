@@ -5,50 +5,42 @@ const contentScripts = [
 	{
 		id: '1-1-text-alternatives-js',
 		js: ['rules/1-1-text-alternatives/checks.js'],
-		matches: ['*://*/*'],
 	},
 	{
 		id: '1-1-text-alternatives-css',
 		css: ['rules/1-1-text-alternatives/checks.css'],
-		matches: ['*://*/*'],
 	},
 	{
 		id: 'info-js',
 		js: ['rules/info/checks.js'],
-		matches: ['*://*/*'],
 	},
 	{
 		id: 'info-css',
 		css: ['rules/info/checks.css'],
-		matches: ['*://*/*'],
 	},
 	{
 		id: 'warning-js',
 		js: ['rules/warning/checks.js'],
-		matches: ['*://*/*'],
 	},
 	{
 		id: 'warning-css',
 		css: ['rules/warning/checks.css'],
-		matches: ['*://*/*'],
 	},
 	{
 		id: 'error-js',
 		js: ['rules/error/checks.js'],
-		matches: ['*://*/*'],
 	},
 	{
 		id: 'error-css',
 		css: ['rules/error/checks.css'],
-		matches: ['*://*/*'],
 	},
 ];
 
 const optionState = {
 	'1-1-text-alternatives': true,
-	info: false,
-	warning: false,
-	error: false,
+	info: true,
+	warning: true,
+	error: true,
 };
 
 const menuOptions = [
@@ -57,7 +49,7 @@ const menuOptions = [
 		type: 'checkbox',
 		title: '1.1 Text Alternatives',
 		contexts: ['action'],
-		checked: optionState.info,
+		checked: optionState['1-1-text-alternatives'],
 	},
 	{
 		id: 'info',
@@ -98,23 +90,20 @@ const isScriptEnabled = (script) => {
 };
 
 const toggleContentScripts = async (tab) => {
-	const scripts = await browser.scripting.getRegisteredContentScripts({
-		ids: contentScripts.map(({ id }) => id),
-	});
-
 	if (scriptsEnabled) {
-		for (const script of scripts) {
+		for (const script of contentScripts) {
 			if (script.css) {
 				browser.scripting.removeCSS({
 					files: script.css,
 					target: {
 						tabId: tab.id,
 					},
+					origin: 'USER',
 				});
 			}
 		}
 	} else {
-		for (const script of scripts) {
+		for (const script of contentScripts) {
 			const enabled = isScriptEnabled(script);
 			if (script.js && enabled) {
 				browser.scripting.executeScript({
@@ -132,6 +121,7 @@ const toggleContentScripts = async (tab) => {
 					target: {
 						tabId: tab.id,
 					},
+					origin: 'USER',
 				});
 			}
 		}
@@ -143,9 +133,7 @@ const toggleContentScripts = async (tab) => {
 const toggleRules = async (info, tab) => {
 	const { checked, menuItemId } = info;
 	optionState[menuItemId] = checked;
-	const scripts = await browser.scripting.getRegisteredContentScripts({
-		ids: [`${menuItemId}-js`, `${menuItemId}-css`],
-	});
+	const scripts = contentScripts.filter(({ id }) => id.replace(/\-(js|css)/, '') === menuItemId);
 	for (const script of scripts) {
 		if (script.css && !checked) {
 			browser.scripting.removeCSS({
@@ -153,6 +141,7 @@ const toggleRules = async (info, tab) => {
 				target: {
 					tabId: tab.id,
 				},
+				origin: 'USER',
 			});
 			continue;
 		}
@@ -174,6 +163,7 @@ const toggleRules = async (info, tab) => {
 					target: {
 						tabId: tab.id,
 					},
+					origin: 'USER',
 				});
 			}
 		}
@@ -181,9 +171,14 @@ const toggleRules = async (info, tab) => {
 };
 
 browser.runtime.onInstalled.addListener(async () => {
-	await registerContentScripts();
 	initializeContextMenuOptions();
 });
 
 browser.action.onClicked.addListener(toggleContentScripts);
 browser.contextMenus.onClicked.addListener(toggleRules);
+browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+	if (changeInfo.status === 'complete') {
+		scriptsEnabled = !scriptsEnabled;
+		toggleContentScripts(tab);
+	}
+});
