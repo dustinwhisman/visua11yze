@@ -1,0 +1,37 @@
+:root {
+	--error-color: hotpink;
+	--inverted-error-color: #00964b;
+	--warning-color: goldenrod;
+	--info-color: cornflowerblue;
+	--error-outline: 0.25rem solid var(--error-color);
+	--inverted-error-outline: 0.25rem solid var(--inverted-error-color);
+	--warning-outline: 0.25rem solid var(--warning-color);
+	--info-outline: 0.25rem solid var(--info-color);
+}
+
+img:not([alt]) {
+	--wcag-success-criteria: '1.1.1 Non-Text Content';
+	--error-missing-alt-text: 'This image does not have alt text. Even if it is purely decorative, the alt attribute must exist.';
+
+	background-color: var(--inverted-error-color);
+	outline: var(--inverted-error-outline);
+	outline-offset: 0.25rem;
+	filter: invert(100%);
+}
+
+img[alt=''] {
+	--wcag-success-criteria: '1.1.1 Non-Text Content';
+	--warning-decorative-image: 'This image will be treated as purely decorative. Are you sure it does not convey any useful information or context?';
+
+	filter: opacity(5%) blur(5px);
+}
+
+img[alt^="image" i],
+img[alt^="picture" i],
+img[alt^="graphic" i] {
+	--wcag-success-criteria: '1.1.1 Non-Text Content';
+	--info-repetitive-alt-text: 'Screen readers will let users know they are describing an image, so it is redundant to start alt text with immage, picture, or graphic.';
+
+	outline: var(--info-outline);
+	outline-offset: 0.25rem;
+}
