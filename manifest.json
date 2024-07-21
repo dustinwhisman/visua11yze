@@ -16,7 +16,7 @@
   },
   "permissions": [
     "activeTab",
-    "menus",
+    "contextMenus",
     "scripting"
   ]
 }

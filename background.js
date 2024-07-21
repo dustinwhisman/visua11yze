@@ -66,7 +66,7 @@ const menuOptions = [
 
 const initializeContextMenuOptions = () => {
 	for (const option of menuOptions) {
-		browser.menus.create(option);
+		browser.contextMenus.create(option);
 	}
 };
 
@@ -93,7 +93,6 @@ const toggleContentScripts = async (tab) => {
 						tabId: tab.id,
 					},
 				});
-				return;
 			}
 		}
 	} else {
@@ -106,7 +105,7 @@ const toggleContentScripts = async (tab) => {
 						tabId: tab.id,
 					},
 				});
-				return;
+				continue;
 			}
 
 			if (script.css && enabled) {
@@ -116,7 +115,6 @@ const toggleContentScripts = async (tab) => {
 						tabId: tab.id,
 					},
 				});
-				return;
 			}
 		}
 	}
@@ -124,14 +122,12 @@ const toggleContentScripts = async (tab) => {
 	scriptsEnabled = !scriptsEnabled;
 };
 
-const toggleRules = async (event) => {
-	const { checked, menuItemId } = event;
+const toggleRules = async (info, tab) => {
+	const { checked, menuItemId } = info;
 	optionState[menuItemId] = checked;
-	const currentTabs = await browser.tabs.query({ active: true });
 	const scripts = await browser.scripting.getRegisteredContentScripts({
 		ids: [`${menuItemId}-js`, `${menuItemId}-css`],
 	});
-	for (const tab of currentTabs) {
 		for (const script of scripts) {
 			if (script.css && !checked) {
 				browser.scripting.removeCSS({
@@ -140,7 +136,7 @@ const toggleRules = async (event) => {
 						tabId: tab.id,
 					},
 				});
-				return;
+			continue;
 			}
 
 			if (checked && scriptsEnabled) {
@@ -151,7 +147,7 @@ const toggleRules = async (event) => {
 							tabId: tab.id,
 						},
 					});
-					return;
+				continue;
 				}
 
 				if (script.css) {
@@ -161,8 +157,6 @@ const toggleRules = async (event) => {
 							tabId: tab.id,
 						},
 					});
-					return;
-				}
 			}
 		}
 	}
@@ -174,4 +168,4 @@ browser.runtime.onInstalled.addListener(async () => {
 });
 
 browser.action.onClicked.addListener(toggleContentScripts);
-browser.menus.onClicked.addListener(toggleRules);
+browser.contextMenus.onClicked.addListener(toggleRules);
