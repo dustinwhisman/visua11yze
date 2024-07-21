@@ -65,9 +65,9 @@ const menuOptions = [
 ];
 
 const initializeContextMenuOptions = () => {
-	menuOptions.forEach((option) => {
+	for (const option of menuOptions) {
 		browser.menus.create(option);
-	});
+	}
 };
 
 const registerContentScripts = async () => {
@@ -85,7 +85,7 @@ const toggleContentScripts = async (tab) => {
 	});
 
 	if (scriptsEnabled) {
-		scripts.forEach((script) => {
+		for (const script of scripts) {
 			if (script.css) {
 				browser.scripting.removeCSS({
 					files: script.css,
@@ -95,9 +95,9 @@ const toggleContentScripts = async (tab) => {
 				});
 				return;
 			}
-		});
+		}
 	} else {
-		scripts.forEach((script) => {
+		for (const script of scripts) {
 			const enabled = isScriptEnabled(script);
 			if (script.js && enabled) {
 				browser.scripting.executeScript({
@@ -118,7 +118,7 @@ const toggleContentScripts = async (tab) => {
 				});
 				return;
 			}
-		});
+		}
 	}
 
 	scriptsEnabled = !scriptsEnabled;
@@ -131,8 +131,8 @@ const toggleRules = async (event) => {
 	const scripts = await browser.scripting.getRegisteredContentScripts({
 		ids: [`${menuItemId}-js`, `${menuItemId}-css`],
 	});
-	currentTabs.forEach((tab) => {
-		scripts.forEach((script) => {
+	for (const tab of currentTabs) {
+		for (const script of scripts) {
 			if (script.css && !checked) {
 				browser.scripting.removeCSS({
 					files: script.css,
@@ -164,8 +164,8 @@ const toggleRules = async (event) => {
 					return;
 				}
 			}
-		});
-	});
+		}
+	}
 };
 
 browser.runtime.onInstalled.addListener(async () => {
