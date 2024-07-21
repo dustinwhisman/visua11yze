@@ -13,9 +13,3 @@ a[target='_blank'] {
 
 	outline: var(--info-outline);
 }
-
-img[alt=''] {
-	--info-decorative-image: 'This image will be treated as purely decorative. Are you sure it does not convey any useful information or context?';
-
-	outline: var(--info-outline);
-}
