@@ -3,6 +3,16 @@ globalThis.browser = globalThis.browser ?? chrome;
 
 const contentScripts = [
 	{
+		id: '1-1-text-alternatives-js',
+		js: ['rules/1-1-text-alternatives/checks.js'],
+		matches: ['*://*/*'],
+	},
+	{
+		id: '1-1-text-alternatives-css',
+		css: ['rules/1-1-text-alternatives/checks.css'],
+		matches: ['*://*/*'],
+	},
+	{
 		id: 'info-js',
 		js: ['rules/info/checks.js'],
 		matches: ['*://*/*'],
@@ -35,12 +45,20 @@ const contentScripts = [
 ];
 
 const optionState = {
-	info: true,
-	warning: true,
-	error: true,
+	'1-1-text-alternatives': true,
+	info: false,
+	warning: false,
+	error: false,
 };
 
 const menuOptions = [
+	{
+		id: '1-1-text-alternatives',
+		type: 'checkbox',
+		title: '1.1 Text Alternatives',
+		contexts: ['action'],
+		checked: optionState.info,
+	},
 	{
 		id: 'info',
 		type: 'checkbox',
@@ -128,35 +146,35 @@ const toggleRules = async (info, tab) => {
 	const scripts = await browser.scripting.getRegisteredContentScripts({
 		ids: [`${menuItemId}-js`, `${menuItemId}-css`],
 	});
-		for (const script of scripts) {
-			if (script.css && !checked) {
-				browser.scripting.removeCSS({
+	for (const script of scripts) {
+		if (script.css && !checked) {
+			browser.scripting.removeCSS({
+				files: script.css,
+				target: {
+					tabId: tab.id,
+				},
+			});
+			continue;
+		}
+
+		if (checked && scriptsEnabled) {
+			if (script.js) {
+				browser.scripting.executeScript({
+					files: script.js,
+					target: {
+						tabId: tab.id,
+					},
+				});
+				continue;
+			}
+
+			if (script.css) {
+				browser.scripting.insertCSS({
 					files: script.css,
 					target: {
 						tabId: tab.id,
 					},
 				});
-			continue;
-			}
-
-			if (checked && scriptsEnabled) {
-				if (script.js) {
-					browser.scripting.executeScript({
-						files: script.js,
-						target: {
-							tabId: tab.id,
-						},
-					});
-				continue;
-				}
-
-				if (script.css) {
-					browser.scripting.insertCSS({
-						files: script.css,
-						target: {
-							tabId: tab.id,
-						},
-					});
 			}
 		}
 	}

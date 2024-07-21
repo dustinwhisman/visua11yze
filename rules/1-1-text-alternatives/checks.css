@@ -1,0 +1,20 @@
+:root {
+	--error-color: hotpink;
+	--inverted-error-color: #00964b;
+	--warning-color: goldenrod;
+	--info-color: cornflowerblue;
+	--error-outline: 0.25rem solid var(--error-color);
+	--inverted-error-outline: 0.25rem solid var(--inverted-error-color);
+	--warning-outline: 0.25rem solid var(--warning-color);
+	--info-outline: 0.25rem solid var(--info-color);
+}
+
+img:not([alt]) {
+	--wcag-sc-failure: '1.1.1 Non-Text Content';
+	--error-missing-alt-text: 'This image does not have alt text. Even if it is purely decorative, the alt attribute must exist.';
+
+	background-color: var(--inverted-error-color);
+	outline: var(--inverted-error-outline) !important;
+	outline-offset: 0.25rem !important;
+	filter: invert(100%) !important;
+}
