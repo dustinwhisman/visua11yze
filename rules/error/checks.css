@@ -104,7 +104,7 @@ figure:not(:is([aria-label], [aria-labelledby]), :has(figcaption)) {
 	outline: var(--error-outline);
 }
 
-body :not(> :is(header, nav, main, aside, footer), :is(header, nav, main, aside, footer) *) {
+body :not(body > :is(header, nav, main, aside, footer), :is(header, nav, main, aside, footer) *) {
 	--error-content-outside-landmark: 'You have some content that is not inside a landmark (header, nav, main, aside, or footer)';
 
 	outline: var(--error-outline);
