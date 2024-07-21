@@ -9,7 +9,7 @@
 			};
 		}
 
-		return getDeepestDirectDiv(selector + ' > div', depth + 1, element);
+		return getDeepestDirectDiv(`${selector} > div`, depth + 1, element);
 	};
 
 	const getDeepestDiv = (selector = 'div div', depth = 2, lastElement = null) => {
@@ -22,7 +22,7 @@
 			};
 		}
 
-		return getDeepestDiv(selector + ' div', depth + 1, element);
+		return getDeepestDiv(`${selector} div`, depth + 1, element);
 	};
 
 	const checkSiteForIssues = () => {
