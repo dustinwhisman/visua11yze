@@ -1,0 +1,39 @@
+:root {
+	--warning-color: goldenrod;
+	--warning-outline: 0.25rem solid var(--warning-color);
+}
+
+video:not(:has(track)) {
+	--wcag-success-criteria-level-a:
+    '1.2.1 Audio-only and Video-only (Prerecorded)'
+    '1.2.2 Captions (Prerecorded)'
+    '1.2.3 Audio Description or Media Alternative (Prerecorded)';
+  --wcag-success-criteria-level-aa: '1.2.5 Audio Description (Prerecorded)';
+  --wcag-success-criteria-level-aaa: '1.2.7 Extended Audio Description (Prerecorded)';
+	--warning-no-track: 'Should this video have an audio description, captions, or a transcript? Consider using the <track> element to provide these alternatives to video content.';
+
+	outline: var(--warning-outline);
+	outline-offset: 0.25rem;
+}
+
+video:not(:has(track[kind="captions"])) {
+	--wcag-success-criteria-level-a:
+    '1.2.1 Audio-only and Video-only (Prerecorded)'
+    '1.2.2 Captions (Prerecorded)';
+	--warning-no-track: 'Should this video have captions? Consider using the <track> element with `kind="captions"` to provide them.';
+
+	outline: var(--warning-outline);
+	outline-offset: 0.25rem;
+}
+
+video:not(:has(track[kind="descriptions"])) {
+	--wcag-success-criteria-level-a:
+    '1.2.1 Audio-only and Video-only (Prerecorded)'
+    '1.2.3 Audio Description or Media Alternative (Prerecorded)';
+  --wcag-success-criteria-level-aa: '1.2.5 Audio Description (Prerecorded)';
+  --wcag-success-criteria-level-aaa: '1.2.7 Extended Audio Description (Prerecorded)';
+	--warning-no-track: 'Should this video have an audio description? Consider using the <track> element with `kind="description"` to provide one.';
+
+	outline: var(--warning-outline);
+	outline-offset: 0.25rem;
+}

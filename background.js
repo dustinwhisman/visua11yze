@@ -1,78 +1,39 @@
 let scriptsEnabled = false;
 globalThis.browser = globalThis.browser ?? chrome;
 
-const contentScripts = [
-	{
-		id: '1-1-text-alternatives-js',
-		js: ['rules/1-1-text-alternatives/checks.js'],
-	},
-	{
-		id: '1-1-text-alternatives-css',
-		css: ['rules/1-1-text-alternatives/checks.css'],
-	},
-	{
-		id: 'info-js',
-		js: ['rules/info/checks.js'],
-	},
-	{
-		id: 'info-css',
-		css: ['rules/info/checks.css'],
-	},
-	{
-		id: 'warning-js',
-		js: ['rules/warning/checks.js'],
-	},
-	{
-		id: 'warning-css',
-		css: ['rules/warning/checks.css'],
-	},
-	{
-		id: 'error-js',
-		js: ['rules/error/checks.js'],
-	},
-	{
-		id: 'error-css',
-		css: ['rules/error/checks.css'],
-	},
-];
-
-const optionState = {
-	'1-1-text-alternatives': true,
-	info: true,
-	warning: true,
-	error: true,
+const CATEGORIES = {
+	'1-1-text-alternatives': '1.1 Text Alternatives',
+	'1-2-time-based-media': '1.2 Time-based Media',
+	info: 'Info',
+	warning: 'Warning',
+	error: 'Error',
 };
 
-const menuOptions = [
-	{
-		id: '1-1-text-alternatives',
-		type: 'checkbox',
-		title: '1.1 Text Alternatives',
-		contexts: ['action'],
-		checked: optionState['1-1-text-alternatives'],
-	},
-	{
-		id: 'info',
-		type: 'checkbox',
-		title: 'Info',
-		contexts: ['action'],
-		checked: optionState.info,
-	},
-	{
-		id: 'warning',
-		type: 'checkbox',
-		title: 'Warning',
-		contexts: ['action'],
-		checked: optionState.warning,
-	},
-	{
-		id: 'error',
-		type: 'checkbox',
-		title: 'Error',
-		contexts: ['action'],
-		checked: optionState.error,
-	},
-];
+const contentScripts = Object.keys(CATEGORIES)
+	.map((category) => [
+		{
+			id: `${category}-js`,
+			js: [`rules/${category}/checks.js`],
+		},
+		{
+			id: `${category}-css`,
+			css: [`rules/${category}/checks.css`],
+		},
+	])
+	.flat();
+
+const optionState = Object.keys(CATEGORIES).reduce((acc, category) => ({
+	...acc,
+	[category]: true,
+}));
+
+const menuOptions = Object.entries(CATEGORIES).map(([categoryKey, categoryName]) => ({
+	id: categoryKey,
+	type: 'checkbox',
+	title: categoryName,
+	contexts: ['action'],
+	checked: optionState[categoryKey],
+}));
 
 const initializeContextMenuOptions = () => {
 	for (const option of menuOptions) {
