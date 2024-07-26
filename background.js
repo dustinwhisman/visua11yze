@@ -11,6 +11,14 @@ const contentScripts = [
 		css: ['rules/1-1-text-alternatives/checks.css'],
 	},
 	{
+		id: '1-2-time-based-media-js',
+		js: ['rules/1-2-time-based-media/checks.js'],
+	},
+	{
+		id: '1-2-time-based-media-css',
+		css: ['rules/1-2-time-based-media/checks.css'],
+	},
+	{
 		id: 'info-js',
 		js: ['rules/info/checks.js'],
 	},
@@ -38,6 +46,7 @@ const contentScripts = [
 
 const optionState = {
 	'1-1-text-alternatives': true,
+	'1-2-time-based-media': true,
 	info: true,
 	warning: true,
 	error: true,
@@ -50,6 +59,13 @@ const menuOptions = [
 		title: '1.1 Text Alternatives',
 		contexts: ['action'],
 		checked: optionState['1-1-text-alternatives'],
+	},
+	{
+		id: '1-2-time-based-media',
+		type: 'checkbox',
+		title: '1.2 Time-based Media',
+		contexts: ['action'],
+		checked: optionState['1-2-time-based-media'],
 	},
 	{
 		id: 'info',
