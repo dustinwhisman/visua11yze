@@ -24,3 +24,10 @@ pre:not(:has(code)) {
 
   outline: var(--error-outline);
 }
+
+[data-duplicate-level-one-heading] {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --error-duplicate-level-one-heading: 'There is more than one h1 heading on the page. There can be only one, and it should describe/identify the entire page.';
+
+  outline: var(--error-outline);
+}
