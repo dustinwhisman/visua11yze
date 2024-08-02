@@ -31,3 +31,24 @@ pre:not(:has(code)) {
 
   outline: var(--error-outline);
 }
+
+[data-heading-out-of-order] {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --error-heading-out-of-order: 'This heading skipped at least one level. Make sure you are using headings for structuring information and not styling.';
+
+  outline: var(--error-outline);
+}
+
+h1[data-heading-out-of-order] {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --error-heading-out-of-order: 'This h1 heading appeared after another heading element of an equal or lower level. The h1 heading should always be the first heading level used on the page.';
+
+  outline-style: double;
+}
+
+h1[data-duplicate-level-one-heading][data-heading-out-of-order] {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --error-heading-out-of-order: 'There are more than one h1 heading elements on the page, and this one appears after another heading. Check which heading level this should be and adjust it as needed.';
+
+  outline-style: double;
+}
