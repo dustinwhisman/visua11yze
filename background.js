@@ -22,10 +22,13 @@ const contentScripts = Object.keys(CATEGORIES)
 	])
 	.flat();
 
-const optionState = Object.keys(CATEGORIES).reduce((acc, category) => ({
-	...acc,
-	[category]: true,
-}));
+const optionState = Object.keys(CATEGORIES).reduce(
+	(acc, category) => ({
+		...acc,
+		[category]: true,
+	}),
+	{}
+);
 
 const menuOptions = Object.entries(CATEGORIES).map(([categoryKey, categoryName]) => ({
 	id: categoryKey,
