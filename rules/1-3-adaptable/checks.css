@@ -25,6 +25,17 @@ pre:not(:has(code)) {
   outline: var(--error-outline);
 }
 
+[onclick*="location.href"] {
+  --wcag-success-criteria-level-a:
+    '1.3.1 Info and Relationships'
+    '2.1.1 Keyboard'
+    '4.1.2 Name, Role, Value';
+  --wcag-success-criteria-level-aaa: '2.1.3 Keyboard (No Exception)';
+  --error-onclick-simulated-link: 'It looks like you are using an onclick handler to navigate between pages, but have you heard about the <a> element? It does far more than you might expect and is incredibly difficult to simulate with JavaScript.';
+
+  outline: var(--error-outline);
+}
+
 [data-duplicate-level-one-heading] {
   --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
   --error-duplicate-level-one-heading: 'There is more than one h1 heading on the page. There can be only one, and it should describe/identify the entire page.';
