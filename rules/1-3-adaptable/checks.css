@@ -52,3 +52,10 @@ h1[data-duplicate-level-one-heading][data-heading-out-of-order] {
 
   outline-style: double;
 }
+
+:is([class*="heading"], .h1, .h2, .h3, .h4, .h5, .h6):not(h1, h2, h3, h4, h5, h6, [aria-role="heading"]) {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --info-using-styles-not-headings: 'It appears that you might be using styles to make an element look like a heading without using a heading element. If this element is used to visually imply structure, use a heading element (h1, h2, h3, etc.) instead.';
+
+  outline: var(--info-outline);
+}
