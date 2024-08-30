@@ -70,3 +70,10 @@ h1[data-duplicate-level-one-heading][data-heading-out-of-order] {
 
   outline: var(--info-outline);
 }
+
+:is([class*="fa-"], [class*="icon"]):not(svg):not([role="img"]):not([aria-label], [aria-labelledby]) {
+  --wcag-success-criteria-level-a: '1.3.3 Sensory Characteristics';
+  --warning-font-icon: 'It looks like you might be using an icon font. If so, you may want to consider using an image or SVG-based icon set or add image roles and labels to describe the purpose of the icons.';
+
+  outline: var(--warning-outline);
+}
