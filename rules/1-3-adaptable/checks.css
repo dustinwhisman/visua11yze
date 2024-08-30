@@ -1,0 +1,79 @@
+:root {
+  --error-color: hotpink;
+  --error-outline: 0.25rem solid var(--error-color);
+  --warning-color: goldenrod;
+  --warning-outline: 0.25rem solid var(--warning-color);
+  --info-color: cornflowerblue;
+  --info-outline: 0.25rem solid var(--info-color);
+}
+
+pre:not(:has(code)) {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --info-whitespace-formatting: 'On the off chance that you are using white space to format text into columns or a table, you should not do that. Instead use semantic HTML and CSS for that sort of thing.';
+
+  outline: var(--info-outline);
+}
+
+[onclick]:not(:is(button, a, area, datalist, option, input, select, textarea, summary, [role][tabindex])) {
+  --wcag-success-criteria-level-a:
+    '1.3.1 Info and Relationships'
+    '2.1.1 Keyboard'
+    '4.1.2 Name, Role, Value';
+  --wcag-success-criteria-level-aaa: '2.1.3 Keyboard (No Exception)';
+  --error-attached-click-handler: 'You seem to have attached a click handler to a non-interactive element without giving it an appropriate role. Either use a semantically appropriate element or ensure that you are using the correct ARIA roles and attributes.';
+
+  outline: var(--error-outline);
+}
+
+[onclick*="location.href"] {
+  --wcag-success-criteria-level-a:
+    '1.3.1 Info and Relationships'
+    '2.1.1 Keyboard'
+    '4.1.2 Name, Role, Value';
+  --wcag-success-criteria-level-aaa: '2.1.3 Keyboard (No Exception)';
+  --error-onclick-simulated-link: 'It looks like you are using an onclick handler to navigate between pages, but have you heard about the <a> element? It does far more than you might expect and is incredibly difficult to simulate with JavaScript.';
+
+  outline: var(--error-outline);
+}
+
+[data-duplicate-level-one-heading] {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --error-duplicate-level-one-heading: 'There is more than one h1 heading on the page. There can be only one, and it should describe/identify the entire page.';
+
+  outline: var(--error-outline);
+}
+
+[data-heading-out-of-order] {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --error-heading-out-of-order: 'This heading skipped at least one level. Make sure you are using headings for structuring information and not styling.';
+
+  outline: var(--error-outline);
+}
+
+h1[data-heading-out-of-order] {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --error-heading-out-of-order: 'This h1 heading appeared after another heading element of an equal or lower level. The h1 heading should always be the first heading level used on the page.';
+
+  outline-style: double;
+}
+
+h1[data-duplicate-level-one-heading][data-heading-out-of-order] {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --error-heading-out-of-order: 'There are more than one h1 heading elements on the page, and this one appears after another heading. Check which heading level this should be and adjust it as needed.';
+
+  outline-style: double;
+}
+
+:is([class*="heading"], .h1, .h2, .h3, .h4, .h5, .h6):not(h1, h2, h3, h4, h5, h6, [aria-role="heading"]) {
+  --wcag-success-criteria-level-a: '1.3.1 Info and Relationships';
+  --info-using-styles-not-headings: 'It appears that you might be using styles to make an element look like a heading without using a heading element. If this element is used to visually imply structure, use a heading element (h1, h2, h3, etc.) instead.';
+
+  outline: var(--info-outline);
+}
+
+:is([class*="fa-"], [class*="icon"]):not(svg):not([role="img"]):not([aria-label], [aria-labelledby]) {
+  --wcag-success-criteria-level-a: '1.3.3 Sensory Characteristics';
+  --warning-font-icon: 'It looks like you might be using an icon font. If so, you may want to consider using an image or SVG-based icon set or add image roles and labels to describe the purpose of the icons.';
+
+  outline: var(--warning-outline);
+}

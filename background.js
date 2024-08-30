@@ -4,6 +4,7 @@ globalThis.browser = globalThis.browser ?? chrome;
 const CATEGORIES = {
 	'1-1-text-alternatives': '1.1 Text Alternatives',
 	'1-2-time-based-media': '1.2 Time-based Media',
+	'1-3-adaptable': '1.3 Adaptable',
 	info: 'Info',
 	warning: 'Warning',
 	error: 'Error',
@@ -22,10 +23,13 @@ const contentScripts = Object.keys(CATEGORIES)
 	])
 	.flat();
 
-const optionState = Object.keys(CATEGORIES).reduce((acc, category) => ({
-	...acc,
-	[category]: true,
-}));
+const optionState = Object.keys(CATEGORIES).reduce(
+	(acc, category) => ({
+		...acc,
+		[category]: true,
+	}),
+	{}
+);
 
 const menuOptions = Object.entries(CATEGORIES).map(([categoryKey, categoryName]) => ({
 	id: categoryKey,
