@@ -5,6 +5,7 @@ const CATEGORIES = {
 	'1-1-text-alternatives': '1.1 Text Alternatives',
 	'1-2-time-based-media': '1.2 Time-based Media',
 	'1-3-adaptable': '1.3 Adaptable',
+	'1-4-distinguishable': '1.4 Distinguishable',
 	info: 'Info',
 	warning: 'Warning',
 	error: 'Error',

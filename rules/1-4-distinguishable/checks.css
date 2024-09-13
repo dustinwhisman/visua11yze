@@ -1,0 +1,33 @@
+:root {
+  --error-color: hotpink;
+  --error-outline: 0.25rem solid var(--error-color);
+  --warning-color: goldenrod;
+  --warning-outline: 0.25rem solid var(--warning-color);
+  --info-color: cornflowerblue;
+  --info-outline: 0.25rem solid var(--info-color);
+}
+
+[data-text-decoration="none"] {
+  --wcag-success-criteria-level-a: '1.4.1 Use of Color';
+  --warning-no-underlines: 'This link does not seem to have an underline, which is useful for letting users know that it is a link. If you are using a technique other than color to distinguish links from regular text, carry on, otherwise you should probably underline them.';
+
+  outline: var(--warning-outline);
+}
+
+video[autoplay],
+audio[autoplay] {
+  --wcag-success-criteria-level-a: '1.4.2 Audio Control';
+  --warning-autoplaying-video: "This video or audio will play automatically, which is annoying enough on its own, but if audio is playing, it will disrupt screen reader users. Just don't autoplay videos.";
+
+  outline: var(--warning-outline);
+}
+
+video[autoplay]:not([controls]),
+audio[autoplay]:not([controls]) {
+  --wcag-success-criteria-level-a:
+    '1.4.2 Audio Control'
+    '2.2.2 Pause, Stop, Hide';
+  --error-unpauseable-video: 'This video or audio will play automatically and cannot be paused. This is disruptive to literally everyone, so knock it off.';
+
+  outline: var(--error-outline);
+}
