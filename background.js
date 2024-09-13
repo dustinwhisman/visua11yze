@@ -6,6 +6,7 @@ const CATEGORIES = {
 	'1-2-time-based-media': '1.2 Time-based Media',
 	'1-3-adaptable': '1.3 Adaptable',
 	'1-4-distinguishable': '1.4 Distinguishable',
+	'2-1-keyboard-accessibility': '2.1 Keyboard Accessibility',
 	info: 'Info',
 	warning: 'Warning',
 	error: 'Error',
