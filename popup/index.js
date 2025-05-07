@@ -81,6 +81,26 @@ const registerRules = async (rules) => {
 	}
 };
 
+const restoreSavedOptions = async () => {
+	const tabId = await getTabId();
+	const data = await browser.storage.session.get(tabId.toString());
+	const rules = data?.[tabId.toString()] || [];
+
+	if (rules.length) {
+		const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+		checkboxes.forEach((checkbox) => {
+			if (!rules.some((rule) => checkbox.value === rule)) {
+				checkbox.checked = false;
+			}
+		});
+	}
+};
+
+const saveOptions = async (rules) => {
+	const tabId = await getTabId();
+	browser.storage.session.set({ [tabId.toString()]: rules });
+};
+
 const form = document.querySelector('form');
 form.addEventListener('submit', async (event) => {
 	event.preventDefault();
@@ -90,4 +110,9 @@ form.addEventListener('submit', async (event) => {
 
 	await clearCurrentStylesheets();
 	await registerRules(rules);
+	await saveOptions(rules);
+
+	window.close();
 });
+
+restoreSavedOptions();
