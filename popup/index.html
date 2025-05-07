@@ -11,7 +11,7 @@
     <h1>Visua11yze</h1>
     <form>
       <fieldset>
-        <legend>Rules to apply</legend>
+        <legend>Rules to apply (WCAG)</legend>
         <div class="checkbox-wrapper">
           <input id="1-1-text-alternatives" type="checkbox" name="rules" value="1-1-text-alternatives" checked>
           <label for="1-1-text-alternatives">1.1 Text Alternatives</label>
@@ -32,10 +32,25 @@
           <input id="2-1-keyboard-accessible" type="checkbox" name="rules" value="2-1-keyboard-accessible" checked>
           <label for="2-1-keyboard-accessible">2.1 Keyboard</label>
         </div>
-        <div>
-          <button type="submit">Apply rules</button>
+      </fieldset>
+      <fieldset>
+        <legend>Rules to apply (Best Practices)</legend>
+        <div class="checkbox-wrapper">
+          <input id="error" type="checkbox" name="rules" value="error" checked>
+          <label for="error">Errors</label>
+        </div>
+        <div class="checkbox-wrapper">
+          <input id="warning" type="checkbox" name="rules" value="warning" checked>
+          <label for="warning">Warnings</label>
+        </div>
+        <div class="checkbox-wrapper">
+          <input id="info" type="checkbox" name="rules" value="info" checked>
+          <label for="info">Info</label>
         </div>
       </fieldset>
+      <div>
+        <button type="submit">Apply rules</button>
+      </div>
     </form>
     <script src="index.js"></script>
   </body>

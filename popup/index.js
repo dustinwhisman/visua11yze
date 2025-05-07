@@ -6,6 +6,9 @@ const CATEGORIES = [
 	'1-3-adaptable',
 	'1-4-distinguishable',
 	'2-1-keyboard-accessible',
+  'error',
+  'warning',
+  'info',
 ];
 
 const contentScripts = CATEGORIES.map((category) => [
