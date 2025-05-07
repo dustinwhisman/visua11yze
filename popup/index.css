@@ -102,6 +102,12 @@ button {
 	border-radius: 0.25rem;
 }
 
+.buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 [data-remove-regressions] {
 	background-color: darkslategray;
 }
