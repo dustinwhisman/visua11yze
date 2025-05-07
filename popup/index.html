@@ -1,57 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Visua11yze</title>
-    <meta name="description" content="Visualize the accessibility of websites using custom CSS that adds visual regressions for HTML anti-patterns and accessibility issues. Use custom JS to analyze and log details that can't be determined through CSS alone.">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body>
-    <h1>Visua11yze</h1>
-    <form>
-      <fieldset>
-        <legend>Rules to apply (WCAG)</legend>
-        <div class="checkbox-wrapper">
-          <input id="1-1-text-alternatives" type="checkbox" name="rules" value="1-1-text-alternatives" checked>
-          <label for="1-1-text-alternatives">1.1 Text Alternatives</label>
-        </div>
-        <div class="checkbox-wrapper">
-          <input id="1-2-time-based-media" type="checkbox" name="rules" value="1-2-time-based-media" checked>
-          <label for="1-2-time-based-media">1.2 Time-based Media</label>
-        </div>
-        <div class="checkbox-wrapper">
-          <input id="1-3-adaptable" type="checkbox" name="rules" value="1-3-adaptable" checked>
-          <label for="1-3-adaptable">1.3 Adaptable</label>
-        </div>
-        <div class="checkbox-wrapper">
-          <input id="1-4-distinguishable" type="checkbox" name="rules" value="1-4-distinguishable" checked>
-          <label for="1-4-distinguishable">1.4 Distinguishable</label>
-        </div>
-        <div class="checkbox-wrapper">
-          <input id="2-1-keyboard-accessible" type="checkbox" name="rules" value="2-1-keyboard-accessible" checked>
-          <label for="2-1-keyboard-accessible">2.1 Keyboard</label>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Rules to apply (Best Practices)</legend>
-        <div class="checkbox-wrapper">
-          <input id="error" type="checkbox" name="rules" value="error" checked>
-          <label for="error">Errors</label>
-        </div>
-        <div class="checkbox-wrapper">
-          <input id="warning" type="checkbox" name="rules" value="warning" checked>
-          <label for="warning">Warnings</label>
-        </div>
-        <div class="checkbox-wrapper">
-          <input id="info" type="checkbox" name="rules" value="info" checked>
-          <label for="info">Info</label>
-        </div>
-      </fieldset>
-      <div>
-        <button type="submit">Apply rules</button>
-      </div>
-    </form>
-    <script src="index.js"></script>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Visua11yze</title>
+		<meta
+			name="description"
+			content="Visualize the accessibility of websites using custom CSS that adds visual regressions for HTML anti-patterns and accessibility issues. Use custom JS to analyze and log details that can't be determined through CSS alone."
+		/>
+		<link rel="stylesheet" href="index.css" />
+	</head>
+	<body>
+		<h1>Visua11yze</h1>
+		<form>
+			<fieldset>
+				<legend>Rules to apply (WCAG)</legend>
+				<div class="checkbox-wrapper">
+					<input
+						id="1-1-text-alternatives"
+						type="checkbox"
+						name="rules"
+						value="1-1-text-alternatives"
+						checked
+					/>
+					<label for="1-1-text-alternatives">1.1 Text Alternatives</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input
+						id="1-2-time-based-media"
+						type="checkbox"
+						name="rules"
+						value="1-2-time-based-media"
+						checked
+					/>
+					<label for="1-2-time-based-media">1.2 Time-based Media</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input id="1-3-adaptable" type="checkbox" name="rules" value="1-3-adaptable" checked />
+					<label for="1-3-adaptable">1.3 Adaptable</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input id="1-4-distinguishable" type="checkbox" name="rules" value="1-4-distinguishable" checked />
+					<label for="1-4-distinguishable">1.4 Distinguishable</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input
+						id="2-1-keyboard-accessible"
+						type="checkbox"
+						name="rules"
+						value="2-1-keyboard-accessible"
+						checked
+					/>
+					<label for="2-1-keyboard-accessible">2.1 Keyboard</label>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Rules to apply (Best Practices)</legend>
+				<div class="checkbox-wrapper">
+					<input id="error" type="checkbox" name="rules" value="error" checked />
+					<label for="error">Errors</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input id="warning" type="checkbox" name="rules" value="warning" checked />
+					<label for="warning">Warnings</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input id="info" type="checkbox" name="rules" value="info" checked />
+					<label for="info">Info</label>
+				</div>
+			</fieldset>
+			<div class="buttons-wrapper">
+				<button type="submit">Apply rules</button>
+				<button type="button" data-remove-regressions>Remove regressions</button>
+			</div>
+		</form>
+		<script src="index.js"></script>
+	</body>
 </html>

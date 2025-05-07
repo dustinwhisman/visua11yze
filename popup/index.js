@@ -6,9 +6,9 @@ const CATEGORIES = [
 	'1-3-adaptable',
 	'1-4-distinguishable',
 	'2-1-keyboard-accessible',
-  'error',
-  'warning',
-  'info',
+	'error',
+	'warning',
+	'info',
 ];
 
 const contentScripts = CATEGORIES.map((category) => [
@@ -114,6 +114,14 @@ form.addEventListener('submit', async (event) => {
 	await clearCurrentStylesheets();
 	await registerRules(rules);
 	await saveOptions(rules);
+
+	window.close();
+});
+
+const removeRegressionsButton = document.querySelector('[data-remove-regressions]');
+removeRegressionsButton.addEventListener('click', async () => {
+	await clearCurrentStylesheets();
+	await saveOptions([]);
 
 	window.close();
 });
