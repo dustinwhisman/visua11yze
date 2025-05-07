@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Visua11yze",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Visualize the accessibility of websites using custom CSS that adds visual regressions for HTML anti-patterns and accessibility issues. Use custom JS to analyze and log details that can't be determined through CSS alone.",
   "homepage_url": "https://github.com/dustinwhisman/visua11yze",
   "icons": {
